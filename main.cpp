@@ -50,8 +50,10 @@ int main(int argc, char* argv[])
 
     std::vector<std::string> args = {
         ffmpeg,
-        "-loglevel", "info",
+        "-loglevel", "debug",
         "-rtsp_transport", "tcp",
+        "-stimeout", "5000000",
+        "-rw_timeout", "5000000",
         "-i", rtsp_url,
         "-map", "0:v",
         "-map", "0:a?",
@@ -60,6 +62,7 @@ int main(int argc, char* argv[])
         "-f", "segment",
         "-segment_time", "10",
         "-reset_timestamps", "1",
+        "-use_wallclock_as_timestamps", "1",
         "-strftime", "1",
         segmentPath
     };
